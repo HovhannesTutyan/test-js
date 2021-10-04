@@ -1,0 +1,14 @@
+.bg-dark {
+    background: #333;
+    color: #fff;
+}
+.bg-red {
+    background: red;
+    color: white;
+}
+.error {
+    background: orangered;
+    color: #fff;
+    padding: 5px;
+    margin: 5px;
+}
