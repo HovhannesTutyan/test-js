@@ -12,3 +12,7 @@
     padding: 5px;
     margin: 5px;
 }
+.manage {
+    display: inline-block;
+    font: 1em sans-serif;
+}
