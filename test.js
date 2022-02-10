@@ -98,11 +98,42 @@
 // }
 
 // const person1 = new Person('John', 'Doe', '4-3-1980')
-// const person2 = new Person('Mary', 'Smith', '4-3-1990')
+// const person2 = new Person('Mary', 'Smith', '4-3-1990') // + getFullName()
 // console.log(person1);
 // console.log(person2.dob);
 // console.log(person1.getBirthYear());
 // console.log(person1.getFullName());
+
+//``````````````````****************************```````````````//
+function Person(firstName, lastName, dob){
+    var newObject = {};
+    newObject.firstName = firstName;
+    newObject.lastName = lastName;
+    newObject.dob = dob;
+    return newObject;
+}
+var per3 = Person("John", "Doe", "4-3-1980")
+
+//``````````````````****************************```````````````//
+
+function foo(){
+    // var this={}
+    console.log("hello");  
+    console.log(this); // {}
+    // return this;
+}
+foo(); // calling regular function  1
+
+var obj={"prop":"This is the object itself"};
+obj.foo = function(){
+    console.log("Hello");   // Hello
+    console.log(this);     // Object {prop: "This is the object itself!", foo: obj.foo() }
+    console.log(this.prop); // This is the object itself
+}
+obj.foo(); // calling function as property of an object  2
+
+new foo();  // executing the function as constructor 3
+
 
 //``````````````````****************************```````````````//
 
