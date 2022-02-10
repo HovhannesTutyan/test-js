@@ -19,6 +19,7 @@
 // }
 // console.log(person.hobbies[1])
 // console.log(person.address.city)
+// console.log(person["firstName"])
 
 // const {firstName, lastNam, address:{city, street, state}} = person;
 // console.log(firstName)
