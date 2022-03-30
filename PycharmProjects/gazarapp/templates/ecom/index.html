@@ -1,0 +1,60 @@
+{% extends 'ecom/base.html' %}
+{% block script %}
+{% load static %}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+{% endblock %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <div class="container-md p-0 mt-2">
+        <div class="row equal">
+            {% for category, items in list_items.items %}
+            <div class="col-12 mt-3 text-center" data-aos="fade-right">
+                <h4 class="text-center text-success">{{ category }}</h4>
+            </div>
+            <section class="product" data-aos="fade-right">
+                <div class="container-fluid__main">
+                    <div class="slider-wrap">
+                        <div class="slider-main">
+                            {% for item in items %}
+                            <div class="item">
+                                <a class="product-image__link" href="{% url 'mainapp:itemView' item.id %}">
+                                <img class="image image_card__top" src="{{item.image.url}}" alt="product-image">
+                                </a>
+                                <div class="product-body">
+                                    <div class="product-detail product-detail__header">
+                                        <p class="detail-text product-detail__title">
+                                            <b>{{ item.name | title }}</b>
+                                        </p>
+                                        <p class="detail-text product-detail__description">
+                                            {{ item.description_short}}
+                                        </p>
+                                    </div>
+                                    <div class="detail-text product-detail__price">
+                                        <h6>Price: ${{item.price}} / {{item.unit}}</h6>
+                                    </div>
+                                    <div class="detail-text product-buy">
+                                        <a href="#" class="product-buy__link"><i class="fas fa-cart-plus fa-lg"></i>Buy</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                       </div>
+                    </div>
+                    <div class="btn-area">
+                        <button type="button" class="slider-btn slider-btn__left" onclick="prev(this)">&#139;</button>
+                        <button type="button" class="slider-btn slider-btn__right" onclick="next(this)">&#155;</button>
+                    </div>
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        AOS.init();
+    </script>
+{% endblock %}
