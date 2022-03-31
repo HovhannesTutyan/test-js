@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             "item": data_item,
             "notice": notice,
             "quantity": quantity,
+            "price": price_basic,
             "total price": price_quantity
         }
 
@@ -67,9 +68,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
             "name": JSON.parse(data_item).name,
             "id": JSON.parse(data_item).id,
             "price_basic": price_basic,
-            "price": price_quantity,
             "notice": data["notice"],
-            "quantity": quantity
+            "quantity": quantity,
+            "tot_price": price_quantity
         }
 
         // update to the cart

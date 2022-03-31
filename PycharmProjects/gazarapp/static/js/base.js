@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () =>{
                 const item = {
                     "name": (JSON.parse(item_raw["item"]))["name"],
                     "id": (JSON.parse(item_raw["item"]))["id"],
-                    "price_basic": (JSON.parse(item_raw["item"]))["price"],
-                    "price": item_raw["total price"],
+                    "price_basic": (JSON.parse(item_raw["price"])),
+                    "tot_price": item_raw["total price"],
                     "notice": item_raw["notice"],
                     "quantity": item_raw["quantity"]
                 }
@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () =>{
             }
         }
     }
-
     $(".shoppingCart").on("click", ".remove-item", function(){
          const parent = this.parentElement.parentElement;
          const data_element = parent.querySelector(".data-item");
@@ -59,25 +58,93 @@ document.addEventListener('DOMContentLoaded', () =>{
             renderEmptyCart()
          }
     });
+    $(".shoppingCart-footer").on("click", "#empty-cart", function(){
+        const confirmation = confirm("Are you sure to make empty your cart?");
+        if (confirmation){
+            element.innerHTML = '';
+            renderEmptyCart();
+            localStorage.removeItem("shoppingCart");
+            cart = null;
+        }
+    });
 
+    $(".shoppingCart").on("click", ".quantity_click", function(){
+        var parent = this.parentElement;
+        var item_field = parent.parentElement;
+        var quantity_el = parent.querySelector(".quantity");
+        var current_quantity = parseInt(quantity_el.value);
+        var data_element = item_field.querySelector(".data-item");
+        var item = JSON.parse(data_element.getAttribute("data-item"));
+        cart = JSON.parse(localStorage.getItem("shoppingCart"));
+        items = cart["items"];
 
-
-})
+        if(this.getAttribute("data-type") === "plus"){
+            quantity_el.value = current_quantity + 1;
+            cart, items, item, total_price = updateLocalStorage("quantity_plus", element, cart, items, item);
+            data_element.setAttribute("data-item", JSON.stringify(item));
+            document.querySelectorAll(".total-price").forEach(el=>{
+                el.innerHTML = `<b>$${total_price}</b>`
+            });
+            item_field.querySelector(".item-price").innerHTML = `<b>$${item["total price"]}</b>`;
+        }
+        else if(this.getAttribute("data-type") === "minus"){
+            if(current_quantity > 1){
+                quantity_el.value = current_quantity - 1;
+                cart, items, item, total_price = updateLocalStorage("quantity_minus", element, cart, items, item);
+                data_element.setAttribute("data-item", JSON.stringify(item));
+                document.querySelectorAll(".total-price").forEach(el=> {
+                    el.innerHTML = `<b>$${total_price}</b>`;
+                });
+                item_field.querySelector(".item-price").innerHTML = `<b>$${item["total price"]}</b>`;
+            }
+            else {
+                updateLocalStorage("remove", element, cart, items, item);
+                item_field.parentElement.removeChild(item_field);
+                if (document.querySelector(".item-field") == null){
+                    renderEmptyCart();
+                }
+            }
+        }
+    });
+});
 function renderEmptyCart(){
-    console.log("cart is empty");
-}
+    const markup = `
+        <div class="text-center pt-3 pb-3" id="empty">
+            <img style="width: 100px; height: 100px;" src="https://cdn.pixabay.com/photo/2014/04/02/17/03/shopping-cart-307772_960_720.png">
+            <h5 class="pt-2"> Your card is empty </h5>
+        </div>
+    `;
+    const el = document.querySelector(".shoppingCart");
+    el.insertAdjacentHTML('beforeend', markup);
+    document.querySelectorAll(".total-price").forEach(el=>{
+        el.innerHTML = `$0.00`;
+    });
+    document.getElementById("empty-cart").style.display = 'none';
+    document.getElementById("PCheckout").style.display = 'none';
+};
 function updateLocalStorage(type, element, cart, items, item){
     for (let i=0; i<items.length; i++){
         if(JSON.stringify(items[i]) === JSON.stringify(item)){
-            var price_basic = (JSON.parse(item["item"]))["total price"];
+            var price_basic = (JSON.parse(item["item"]))["price"];
             if(type === "remove"){
                 items.splice(i,1);
                 cart["total_price"] -= item["total price"];
                 document.querySelectorAll(".total-price").forEach(el=>{
                     el.innerHTML = `<b>$${cart["total_price"]}</b>`;
                 });
+            } else if(type === "quantity_plus"){
+            item["quantity"] = parseInt(item["quantity"]);
+            item["quantity"] += 1;
+            item["total price"] += price_basic;
+            cart["total_price"] += price_basic;
+            items[i] = item;
+            } else if (type === "quantity_minus") {
+                item["quantity"] = parseInt(item["quantity"]);
+                item["quantity"] -= 1;
+                item["total price"] -= price_basic;
+                cart["total_price"] -= price_basic;
+                items[i] = item;
             }
-
 
             cart["items"] = items;
             let total_price = cart["total_price"];
@@ -95,7 +162,7 @@ function renderItem(item, item_raw){
                     <a href="/item/${item['id']}"><h5 class="m-0"><b>${item["name"]}</b></a>
                 </div>
                 <div class="ml-1 pl-3 item-price">
-                    <p class="m-0"><b>${item["price"]}</b></p>
+                    <p class="m-0"><b>$${item["tot_price"]}</b></p>
                 </div>
                 <div class="ml-1 pl-3 mr-2 remove-item">
                     <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
