@@ -20,6 +20,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     };
 
+    $(".bag-type").change(function(){
+        var el = document.querySelector(".bag-type");
+        if (el.firstChild.selectedOptions[0].value == "no bag"){
+            document.querySelector(".with-bag").style.display = "none";
+        } else {
+            document.querySelector(".with-bag").style.display = "block";
+        }
+    });
+
     add_cart = document.getElementById('add-to-cart');
     add_cart.addEventListener("click", function(e) {
         const el_cart = document.querySelector(".cart-icon");
@@ -33,13 +42,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const price_quantity = price_basic * quantity;
         const request = document.querySelector(".customer-needs");
         var notice;
-        const ice_type = request.querySelector(".ice-type").firstChild.selectedOptions[0].value;
-        const ice_amount = request.querySelector(".ice-amount").firstChild.selectedOptions[0].value;
+        const bag_type = request.querySelector(".bag-type").firstChild.selectedOptions[0].value;
+        const bag_amount = request.querySelector(".bag-amount").firstChild.selectedOptions[0].value;
         const other_needs = request.querySelector(".needs-other").value;
-        if (ice_type == "no ice"){
-            notice = "The drink with no ice." + other_needs;
+        if (bag_type == "no bag"){
+            notice = "The product with no bag." + other_needs;
         } else {
-            notice = ice_type + " (" + ice_amount + "). " + other_needs;
+            notice = bag_type + " (" + bag_amount + "). " + other_needs;
         }
 
         const data = {
@@ -73,16 +82,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
             "tot_price": price_quantity
         }
 
-        // update to the cart
-//        var remove_empty = document.getElementById("empty");
-//        if(remove_empty !== null){
-//            remove_empty.parentElement.removeChild(remove_empty);
-//        }
 
         // text renderItem from base.js
         var markups = renderItem(item, data);
         var element = document.querySelector(".shoppingCart");
         element.insertAdjacentHTML('beforeend', markups);
+        var remove_empty = document.getElementById("empty");
+        if(remove_empty !== null){
+            remove_empty.parentElement.removeChild(remove_empty)
+        }
         empty_cart = document.getElementById("empty-cart").style.display = 'block';
         cart = JSON.parse(localStorage.getItem("shoppingCart"));
         document.querySelectorAll(".total-price").forEach(el=>{
@@ -96,16 +104,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
         });
     });
 });
-//const no_ice = document.querySelector(".ice-type")
-//console.log(no_ice.firstChild.selectedOptions[0].value)
-//function ice(){
-//    var el = document.querySelector(".ice-type");
-//    if (el.firstChild.selectedOptions[0].value === "no ice"){
-//        document.querySelector(".with-ice").style.display = 'none';
-//    } else {
-//        document.querySelector(".with-ice").style.display = 'block';
-//    }
-//};
 
 const cartNotification = `
     <div class="popup-notification text-center bg-success text-white">

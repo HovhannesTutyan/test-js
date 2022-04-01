@@ -1,3 +1,4 @@
+
 function next(t){
     var element = t.parentElement.parentElement.children[0].children[0];
     var item = element.getElementsByClassName("item")
@@ -47,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
     $(".shoppingCart").on("click", ".remove-item", function(){
+        console.log(this)
          const parent = this.parentElement.parentElement;
          const data_element = parent.querySelector(".data-item");
          var item = JSON.parse(data_element.getAttribute("data-item"));
