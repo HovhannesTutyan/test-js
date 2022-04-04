@@ -1,0 +1,57 @@
+{% extends 'ecom/base.html' %}
+{% block script %}
+{% load static %}
+<script type="text/javascript" src="{% static 'js/checkout.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
+{% block main %}
+    <div class="container pb-5 bg-light">
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="{% static 'images/logo.png' %}" alt="" style="width: 150px; height: 150px;">
+            <h2>Checkout form</h2>
+            <p class="lead">Fresh and Cool</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6 order-md-2 mb-4">
+              <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted white">Your cart</span>
+                <span class="badge badge-secondary badge-pill" id="item-count"></span>
+              </h4>
+              <ul class="list-group mb-3 black" id="items-abstract">
+                <!-- list of abstracted items -->
+              </ul>
+            </div>
+
+            <div class="col-md-8 order-mf-1">
+                <form class="needs-validation" novalidate action="/checkout" mothod="post">
+                    {% csrf_token %}
+                    <h4 class="mb-3">Shipping Details</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Jonas Bravia" value="" required>
+                            <div class="invalid-feedback">
+                                Valid name is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="mobile">Mobile Number</label>
+                            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="012345" value="" required>
+                            <div class="invalid-feedback">
+                                Valid mobile number is required.
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="address" name="address" placeholder="New Jersey" value="" required>
+                            <div class="invalid-feedback">
+                                Please Enter Your Shipping Address.
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
