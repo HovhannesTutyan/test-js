@@ -1,0 +1,139 @@
+{% extends "shop/base.html" %}
+{% block script %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+{% block title %}
+Home page
+{% endblock %}
+
+{% block content %}
+
+<section class="home" id="home">
+    <div class="content">
+        <h3>fresh and <span> organic </span>products</h3>
+        <p>Lorem inpsum dolor sit amet consictatur adipicing elit. Aliquam libero nostraum veniam facere tempore nisi</p>
+        <a href="#" class="btn">shop now</a>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <h1 class="heading"> our <span> features </span></h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="{% static 'images/logo.png'%}">
+            <h3>fresh and organic</h3>
+            <p>Lorem inpsum dolor sit amet consictatur adipicing elit. </p>
+            <a href="#" class="btn">read more</a>
+        </div>
+        <div class="box">
+            <img src="{% static 'images/logo.png' %}">
+            <h3>free delivery</h3>
+            <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+            <a href="#" class="btn">read more</a>
+        </div>
+        <div class="box">
+            <img src="{% static 'images/logo.png' %}">
+            <h3>easy payment</h3>
+            <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+            <a href="#" class="btn">read more</a>
+        <div>
+    </div>
+</section>
+
+<section class="products" id="products">
+    <h1 class="heading">our <span>products </span> </h1>
+    <div class="swiper product-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide box">
+                <img src="{% static 'images/logo.png' %}">
+                <h3>fresh meat</h3>
+                <div class="price">$4.99/- - 10.99/-</div>
+                <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+                <a href="#" class="btn">add to cart</a>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'images/logo.png' %}">
+                <h3>fresh vegetables</h3>
+                <div class="price">$4.99/- - 10.99/-</div>
+                <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+                <a href="#" class="btn">add to cart</a>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'images/logo.png' %}">
+                <h3>fresh fish</h3>
+                <div class="price">$4.99/- - 10.99/-</div>
+                <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+                <a href="#" class="btn">add to cart</a>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'images/logo.png' %}">
+                <h3>fresh fruits</h3>
+                <div class="price">$4.99/- - 10.99/-</div>
+                <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+                <a href="#" class="btn">add to cart</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="categories" id="categories">
+    <h1 class="heading">product <span> categories </span></h1>
+    <div class="box-container">
+        <div class="box">
+            <img src="{% static 'images/logo.png' %}">
+            <h3>vegetables</h3>
+            <p>up to 45% off</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+        <div class="box">
+            <img src="{% static 'images/logo.png' %}">
+            <h3>fresh fruits</h3>
+            <p>up to 45% off</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+        <div class="box">
+            <img src="{% static 'images/logo.png' %}">
+            <h3>dairy products</h3>
+            <p>up to 45% off</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+        <div class="box">
+            <img src="{% static 'images/logo.png' %}">
+            <h3>fresh meat</h3>
+            <p>up to 45% off</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+    </div>
+</section>
+
+<section class="review" id="review">
+    <h1 class="heading"> customer's <span> review </span> </h1>
+    <div class="swiper review-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide box">
+                <img src="{% static 'images/logo.png' %}">
+                <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+                <h3>john doe</h3>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'images/logo.png' %}">
+                <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+                <h3>john snow</h3>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'images/logo.png' %}">
+                <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+                <h3>jack catalana</h3>
+            </div>
+            <div class="swiper-slide box">
+                <img src="{% static 'images/logo.png' %}">
+                <p>Lorem inpsum dolor sit amet consictatur adipicing elit.</p>
+                <h3>big sur</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="{% static 'js/main.js' %}" defer> </script>
+{% endblock %}
