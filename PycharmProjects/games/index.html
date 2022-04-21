@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+</head>
+<body>
+<div style="position: fixed; color: white; margin: 10px; font-size: 20px; user-select: none;">
+    <span>Score:</span>
+    <span id="scoreEl">0</span>
+</div>
+<div id="modalEl" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center;">
+    <div style="background: white; width: 20%; text-align: center;">
+        <h1 id="bigScoreEl" style="font-size: 40px; font-weight: 1200;">0</h1>
+        <p style="font-size: 20px;">Points</p>
+        <div>
+            <button id="startGameEl" style="background: blue; color: white; font-size: 40px; width: 50%; margin-bottom: 20px;">Start Game</button>
+        </div>
+    </div>
+</div>
+<canvas></canvas>
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.3/gsap.min.js" integrity="sha512-6zTDRWNxo8vI6JZYDCwhrJpg5icK3P4HNnW3czsO5Scb3lAoPDam+/wF3eog4hxcl0h44d0XlIcFkuoSaWHQ2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="./script.js"></script>
+<style>
+    body{
+        margin: 0;
+        background: black;
+    }
+</style>
+</html>
